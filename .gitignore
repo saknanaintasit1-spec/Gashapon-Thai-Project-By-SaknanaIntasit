@@ -1,207 +1,442 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[codz]
-*$py.class
+import random as rn
 
-# C extensions
-*.so
+count = 0
+point = 0
+words = {
+        1:"คำนาม", 
+        2:"คำสรรพนาม", 
+        3:"คำกริยา", 
+        4:"คำบุพบท", 
+        5:"คำสันธาน",
+        6:"คำอุทาน",
+        7:"คำวิเศษณ์"
+}
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+คำนาม = {
+  1: "อภิปรัชญา", 
+  2: "อุดมการณ์", 
+  3: "จิตวิทยา", 
+  4: "ภววิสัย", 
+  5: "ญาณวิทยา",
+  6: "อภิธานศัพท์", 
+  7: "มโนทัศน์", 
+  8: "สภาวะ", 
+  9: "วิภาษวิธี", 
+  10: "จารีตประเพณี",
+  11: "สัจนิยม", 
+  12: "อุปนิสัย", 
+  13: "สัมปชัญญะ", 
+  14: "ปฏิทรรศน์", 
+  15: "อิทธิพล",
+  16: "ศีลธรรม", 
+  17: "โวหาร", 
+  18: "ปริทรรศน์", 
+  19: "นามธรรม", 
+  20: "สุนทรียภาพ",
+  21: "อุดมคติ", 
+  22: "ปัจเจกชน", 
+  23: "สมมุติฐาน", 
+  24: "พฤติกรรมศาสตร์", 
+  25: "บูรณาการ",
+  26: "อารยธรรม", 
+  27: "มโนธรรม", 
+  28: "วาทกรรม", 
+  29: "จินตภาพ", 
+  30: "วัตถุนิยม",
+  31: "การดำรงอยู่", 
+  32: "มโนภาพ", 
+  33: "ความเป็นจริง", 
+  34: "ทฤษฎี", 
+  35: "แนวคิด",
+  36: "โลกทัศน์", 
+  37: "ระบบความคิด", 
+  38: "โครงสร้างทางสังคม", 
+  39: "มิติแห่งความรู้", 
+  40: "จริยธรรม"
+}
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+คำสรรพนาม = {
+  1: "อาตมา", 
+  2: "ข้าพเจ้า", 
+  3: "กระผม", 
+  4: "ดิฉัน", 
+  5: "ฉันเอง",
+  6: "ข้าน้อย", 
+  7: "เราผู้หนึ่ง", 
+  8: "ท่าน", 
+  9: "พระองค์", 
+  10: "ใต้ฝ่าละอองธุลีพระบาท",
+  11: "ฝ่าพระบาท", 
+  12: "เธอเอง", 
+  13: "เขาผู้หนึ่ง", 
+  14: "มันเอง", 
+  15: "ใครเล่า",
+  16: "ผู้ใด", 
+  17: "ผู้หนึ่ง", 
+  18: "ผู้ซึ่ง", 
+  19: "สิ่งใด", 
+  20: "บางสิ่ง",
+  21: "บางผู้", 
+  22: "กันและกัน", 
+  23: "ตนเอง", 
+  24: "ตน", 
+  25: "กันเอง",
+  26: "พวกเรา", 
+  27: "พวกเขา", 
+  28: "เหล่านั้น", 
+  29: "แต่ละคน", 
+  30: "ทุกผู้ทุกนาม",
+  31: "ใครบางคน", 
+  32: "อะไรบางอย่าง", 
+  33: "พวกมัน", 
+  34: "เธอคนเดียว", 
+  35: "ท่านผู้เดียว",
+  36: "ผู้ซื่อสัตย์", 
+  37: "บุคคล", 
+  38: "เจ้าตัวเล็ก", 
+  39: "ใครกันแน่", 
+  40: "ใครสักคน"
+}
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+คำกริยา = {
+  1: "ประมวลผล", 
+  2: "สังเคราะห์", 
+  3: "วิเคราะห์", 
+  4: "ตีความ", 
+  5: "อธิบาย",
+  6: "พิจารณา", 
+  7: "ชี้แจง", 
+  8: "แยกแยะ", 
+  9: "เปรียบเทียบ", 
+  10: "สรุปผล",
+  11: "ตรวจสอบ", 
+  12: "ถกเถียง", 
+  13: "เสนอแนะ", 
+  14: "ทบทวน", 
+  15: "จำแนก",
+  16: "ปรับปรุง", 
+  17: "ปฏิรูป", 
+  18: "ประยุกต์", 
+  19: "กระตุ้น", 
+  20: "ส่งเสริม",
+  21: "ยืนยัน", 
+  22: "แก้ไข", 
+  23: "คาดการณ์",
+  24: "ระบุ",
+  25: "เน้นย้ำ",
+  26: "ติดตาม",
+  27: "ควบคุม",
+  28: "จัดการ", 
+  29: "ประเมิน",
+  30: "รังสรรค์",
+  31: "สำรวจ", 
+  32: "สร้างสรรค์",
+  33: "แสดงออก",
+  34: "ควานหา", 
+  35: "สื่อความหมาย",
+  36: "ยกตัวอย่าง",
+  37: "อธิบายเพิ่มเติม",
+  38: "ยอมรับ",
+  39: "เสนอ", 
+  40: "ขยายความ"
+}
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-.hypothesis/
-.pytest_cache/
-cover/
+คำบุพบท = {
+  1: "เนื่องจาก", 
+  2: "เพราะว่า", 
+  3: "โดยประการใด", 
+  4: "ตามแต่", 
+  5: "เกี่ยวกับ",
+  6: "เพื่อที่จะ", 
+  7: "ณ", 
+  8: "นอกเหนือจาก", 
+  9: "ท่ามกลาง", 
+  10: "โดยทาง",
+  11: "แทนที่จะ", 
+  12: "นับตั้งแต่", 
+  13: "โดยอาศัย", 
+  14: "ตาม", 
+  15: "กับ",
+  16: "เหนือ", 
+  17: "ใต้", 
+  18: "ระหว่าง",
+  19: "ต่อ", 
+  20: "ถึง",
+  21: "เหนือกว่า", 
+  22: "เพื่อ", 
+  23: "ด้วย", 
+  24: "จาก", 
+  25: "เกี่ยวกับ",
+  26: "เกี่ยวเนื่องกับ", 
+  27: "ในระหว่าง", 
+  28: "ต่อไปจาก", 
+  29: "รอบ", 
+  30: "ท่าม",
+  31: "เบื้องหน้า", 
+  32: "เบื้องหลัง", 
+  33: "ตรงข้าม", 
+  34: "ณ ที่นี้", 
+  35: "ในที่นี้",
+  36: "ในกรณีที่",
+  37: "ขึ้นอยู่กับ", 
+  38: "ขึ้นกับ", 
+  39: "เกี่ยวกับสิ่งนี้",
+  40: "ระหว่างทาง"
+}
 
-# Translations
-*.mo
-*.pot
+คำสันธาน = {
+  1: "ทั้งนี้",
+  2: "และ", 
+  3: "หรือ", 
+  4: "แต่", 
+  5: "เพราะ",
+  6: "ดังนั้น",
+  7: "เนื่องจาก",
+  8: "ทั้งที่", 
+  9: "ไม่ว่าจะ", 
+  10: "นอกจากนี้",
+  11: "ถึงแม้ว่า",
+  12: "เพราะฉะนั้น", 
+  13: "ตราบใดที่", 
+  14: "ในขณะที่", 
+  15: "จนกว่า",
+  16: "ไม่เพียงแต่", 
+  17: "แม้กระทั่ง", 
+  18: "เพราะเหตุนี้",
+  19: "อีกทั้ง", 
+  20: "ด้วยเหตุนี้",
+  21: "แต่กระนั้น", 
+  22: "ในเมื่อ", 
+  23: "และยัง", 
+  24: "อย่างไรก็ตาม", 
+  25: "แม้ว่า",
+  26: "ทั้งสอง", 
+  27: "ไม่ว่า", 
+  28: "เพราะฉะนั้น", 
+  29: "ดังที่", 
+  30: "เนื่องมาจาก",
+  31: "ยิ่งไปกว่านั้น", 
+  32: "ไม่เพียงแต่...แต่ยัง",
+  33: "ถึงกระนั้น", 
+  34: "ขณะเดียวกัน",
+  35: "โดยที่",
+  36: "เพื่อที่", 
+  37: "แม้ว่าจะ", 
+  38: "ถ้าหากว่า", 
+  39: "เมื่อไรก็ตาม", 
+  40: "ตามที่กล่าวมา"
+}
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+คำอุทาน = {
+  1: "โอ้โห", 
+  2: "อุ๊ย", 
+  3: "อ๊ะ", 
+  4: "โอ้", 
+  5: "เฮ้",
+  6: "ว้าว", 
+  7: "อึ้ง", 
+  8: "อ๋อ", 
+  9: "อ๊ะอ๋า", 
+  10: "โอ๊ะ",
+  11: "อื้อหือ", 
+  12: "อืม", 
+  13: "อุ๊บ", 
+  14: "โอเค", 
+  15: "อ๊าก",
+  16: "โอ้โฮ",
+  17: "อุ๊ยตาย", 
+  18: "อ๊ะนั่น", 
+  19: "อ๊ะจัง", 
+  20: "อ้าว",
+  21: "โอ๊ย", 
+  22: "อุ๊ยยะ",
+  23: "ว้าย", 
+  24: "อุ๊ยเฮ้ย",
+  25: "เฮ้ย",
+  26: "ฮูเร่",
+  27: "แหม", 
+  28: "โอ้แม่เจ้า",
+  29: "อื้อ", 
+  30: "โอ๊ยโฮ",
+  31: "อะไรกันนี่",
+  32: "ว้าววว",
+  33: "โอ้มายก็อด", 
+  34: "เฮ้ยย", 
+  35: "แย่แล้ว",
+  36: "สุดยอด", 
+  37: "อื้อหือออ",
+  38: "เอ๊ะ",
+  39: "อื๋อ", 
+  40: "บ้าจริง"
+}
 
-# Flask stuff:
-instance/
-.webassets-cache
+คำวิเศษณ์ = {
+    1: "ซับซ้อน",
+    2: "ละเอียดอ่อน",
+    3: "ลุ่มลึก",
+    4: "รอบคอบ",
+    5: "ชาญฉลาด",
+    6: "รุนแรง",
+    7: "แปลกประหลาด",
+    8: "วิจิตร",
+    9: "ประณีต",
+    10: "ลึกลับ",
+    11: "น่าสนใจ",
+    12: "เหนือชั้น",
+    13: "สำคัญ",
+    14: "ก้าวหน้า",
+    15: "เฉียบคม",
+    16: "หนักแน่น",
+    17: "มั่นคง",
+    18: "ซื่อตรง",
+    19: "สง่างาม",
+    20: "หรูหรา",
+    21: "ล้ำค่า",
+    22: "รอบด้าน",
+    23: "โดดเด่น",
+    24: "ล้ำสมัย",
+    25: "ถี่ถ้วน",
+    26: "แกร่งกล้า",
+    27: "นุ่มนวล",
+    28: "กระตือรือร้น",
+    29: "ยืดหยุ่น",
+    30: "อ่อนโยน",
+    31: "ซึมลึก",
+    32: "ประณีตบรรจง",
+    33: "หยั่งลึก",
+    34: "อ่อนช้อย",
+    35: "เคร่งขรึม",
+    36: "ละเอียดถี่ถ้วน",
+    37: "สว่างไสว",
+    38: "ชวนหลงใหล",
+    39: "สงบเยือกเย็น",
+    40: "แฝงนัย"
+}
 
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# UV
-#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#uv.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-#poetry.toml
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
-#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
-#pdm.lock
-#pdm.toml
-.pdm-python
-.pdm-build/
-
-# pixi
-#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
-#pixi.lock
-#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
-#   in the .venv directory. It is recommended not to include this directory in version control.
-.pixi
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.envrc
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
-
-# Abstra
-# Abstra is an AI-powered process automation framework.
-# Ignore directories containing user credentials, local state, and settings.
-# Learn more at https://abstra.io/docs
-.abstra/
-
-# Visual Studio Code
-#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
-#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
-#  you could uncomment the following to ignore the entire vscode folder
-# .vscode/
-
-# Ruff stuff:
-.ruff_cache/
-
-# PyPI configuration file
-.pypirc
-
-# Cursor
-#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
-#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
-#  refer to https://docs.cursor.com/context/ignore-files
-.cursorignore
-.cursorindexingignore
-
-# Marimo
-marimo/_static/
-marimo/_lsp/
-__marimo__/
+print("ดช. ศักดิ์นานา อินทสิทธิ์ ม.1/7 เลขที่ 29")
+print("The Prince Royal's College")
+print()
+print("    >>>  เกมทายชนิดของคํา  <<<")
+print("        --- กาชาปอง ---")
+print("            _____")
+print("          /       \ ")
+print("         |         | ")
+print("          \ _____ / ")
+print("           /     \ ")
+print("          |   _   |")
+print("          |  |_|  |")
+print("          |_______|")
+print()
+print("      >>>  ชนิดของคํา  <<<")
+print()
+print("สุ่ม       กด 1)")
+print("ไม่สุ่ม     กด 2)")
+print()
+while True:
+  Y_N = int(input("เลือก 1 หรือ 2 : "))
+  if Y_N == 1:
+    HMT = int(input("เล่นกี่ครั้ง : "))
+    break
+  elif Y_N == 2:
+    print()
+    print("--- ขอบคุณที่ใช้บริการ ---")
+    break
+  else:
+    print("กรุณา กด 1 หรือ 2")
+    print()
+    continue
+while True:
+  row = rn.randint(1,40)
+  num = rn.randint(1,7)
+  if Y_N == 1:
+    print()
+    print()
+    if num == 1:
+      print(">>> ", คำนาม[row], " <<<")
+    elif num == 2:
+      print(">>> ", คำสรรพนาม[row], " <<<")
+    elif  num == 3:
+      print(">>> ", คำกริยา[row], " <<<")
+    elif num == 4:
+      print(">>> ", คำบุพบท[row], " <<<")
+    elif num == 5:
+      print(">>> ", คำสันธาน[row], " <<<")
+    elif num == 6:
+      print(">>> ", คำอุทาน[row], " <<<")
+    elif num == 7:
+      print(">>> ", คำวิเศษณ์[row], " <<<")
+  elif Y_N == 2:
+    break
+  for i in range(3):
+    print()
+  print("---  ชนิดของคํา  ---")
+  print()
+  print("คำนาม       กด 1)")
+  print("คำสรรพนาม   กด 2)")
+  print("คำกริยา      กด 3)")
+  print("คำบุพบท      กด 4)")
+  print("คำสันธาน     กด 5)")
+  print("คำอุทาน      กด 6)")
+  print("คำวิเศษณ์     กด 7)")
+  print()
+  choose = int(input("เลือก 1-7 : "))
+  print()
+  if choose == num:
+    print("ถูกต้อง")
+    count += 1
+    point += 1
+  else:
+    print("ผิด") 
+    count += 1
+    print()
+    print("คำตอบคือ : ",words[num])
+  print()
+  if count == HMT:
+    print(">>> จบเกม <<<")
+    print()
+    print("ตอนนี้คุณเล่นไป : ", count, "ครั้ง")
+    print("คุณได้คะแนน : ", point, "คะแนน", "จาก", HMT,)
+    print()
+    print("--- ขอบคุณที่ใช้บริการ ---")
+    break
+  else:
+    for i in range(5):
+      print()
+    print("ตอนนี้คุณเล่นไป : ", count, "ครั้ง")
+    print()
+    while True:
+      print("กด Enter เพื่อเล่นต่อ")
+      print("กด S แล้ว Enter เพื่อหยุดเล่น")
+      again = input("")
+      if again == "S":
+        print(">>> จบเกม <<<")
+        print()
+        print("ตอนนี้คุณเล่นไป : ", count, "ครั้ง")
+        print("คุณได้คะแนน : ", point, "คะแนน", "จาก", count)
+        print()
+        print("--- ขอบคุณที่ใช้บริการ ---")
+        break
+      elif again == "s":
+        print(">>> จบเกม <<<")
+        print()
+        print("ตอนนี้คุณเล่นไป : ", count, "ครั้ง")
+        print("คุณได้คะแนน : ", point, "คะแนน", "จาก", count)
+        print()
+        print("--- ขอบคุณที่ใช้บริการ ---")
+        break
+      elif again == "":
+        print()
+        break
+      else:
+         print()
+         print("กรุณากด Enter หรือ S แล้ว Enter")
+         print()
+         continue
+    if  again == "S":
+      break
+    elif again == "s":
+      break
+    elif again == "":
+      continue
+    else:
+      print()

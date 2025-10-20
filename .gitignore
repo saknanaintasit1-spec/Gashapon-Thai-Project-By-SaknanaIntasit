@@ -333,11 +333,11 @@ print("สุ่ม       กด 1)")
 print("ไม่สุ่ม     กด 2)")
 print()
 while True:
-  Y_N = int(input("เลือก 1 หรือ 2 : "))
-  if Y_N == 1:
-    HMT = int(input("เล่นกี่ครั้ง : "))
+  Y_N = input("เลือก 1 หรือ 2 : ")
+  if Y_N == "1":
+    HMT = input("เล่นกี่ครั้ง : ")
     break
-  elif Y_N == 2:
+  elif Y_N == "2":
     print()
     print("--- ขอบคุณที่ใช้บริการ ---")
     break
@@ -348,7 +348,7 @@ while True:
 while True:
   row = rn.randint(1,40)
   num = rn.randint(1,7)
-  if Y_N == 1:
+  if Y_N == "1":
     print()
     print()
     if num == 1:
@@ -365,7 +365,7 @@ while True:
       print(">>> ", คำอุทาน[row], " <<<")
     elif num == 7:
       print(">>> ", คำวิเศษณ์[row], " <<<")
-  elif Y_N == 2:
+  elif Y_N == "2":
     break
   for i in range(3):
     print()
@@ -379,9 +379,9 @@ while True:
   print("คำอุทาน      กด 6)")
   print("คำวิเศษณ์     กด 7)")
   print()
-  choose = int(input("เลือก 1-7 : "))
+  choose = input("เลือก 1-7 : ")
   print()
-  if choose == num:
+  if choose == str(num):
     print("ถูกต้อง")
     count += 1
     point += 1
@@ -391,7 +391,7 @@ while True:
     print()
     print("คำตอบคือ : ",words[num])
   print()
-  if count == HMT:
+  if str(count) == HMT:
     print(">>> จบเกม <<<")
     print()
     print("ตอนนี้คุณเล่นไป : ", count, "ครั้ง")
